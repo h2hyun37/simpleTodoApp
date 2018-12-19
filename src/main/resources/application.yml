@@ -1,0 +1,45 @@
+spring:
+  profiles:
+    active: local
+
+---
+spring:
+  profiles: local
+
+  h2:
+    console:
+      enabled: true
+
+  datasource:
+    platform: h2
+    url: jdbc:h2:tcp://localhost:8043/mem:todoApp;MVCC=TRUE
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+    connection-timeout: 5000
+    maximum-pool-size: 2
+
+  jpa:
+    database-platform: H2
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+  freemarker:
+    template-loader-path: classpath:/templates/
+    cache: false
+    spring-macro-helpers: true
+    settings:
+      template_exception_handler: rethrow
+
+  resources:
+    static-locations: classpath:/static/
+
+server:
+  port: 8080

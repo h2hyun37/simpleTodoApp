@@ -1,0 +1,4 @@
+.dashed{
+    text-decoration: overline underline line-through;
+    color:#999;
+}
