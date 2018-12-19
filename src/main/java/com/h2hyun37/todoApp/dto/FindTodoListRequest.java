@@ -5,16 +5,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotBlank;
-import java.util.List;
-
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateTodoRequestBody {
-	@NotBlank
-	private String content;
-
-	private List<Long> referenceIdList;
+public class FindTodoListRequest {
+	private int page;
+	private int size;
 }

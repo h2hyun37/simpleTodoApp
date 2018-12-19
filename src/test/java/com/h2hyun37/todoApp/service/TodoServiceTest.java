@@ -13,6 +13,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -43,14 +46,16 @@ public class TodoServiceTest {
 	@Test
 	public void test_create_with_reference() {
 		String mainTodoContent = "test content";
-		CreateTodoRequestBody mainTodoRequest = getCreateTodoRequest(mainTodoContent, null);
+		CreateTodoRequestBody mainTodoRequest = getCreateTodoRequest(mainTodoContent, new ArrayList<>());
 		Todo mainTodo = todoService.create(mainTodoRequest).getTodo();
 
 		assertThat(mainTodo, is(notNullValue()));
 
 
 		String subTodoContent = "test with reference";
-		CreateTodoRequestBody subTodoRequest = getCreateTodoRequest(subTodoContent, mainTodo.getTodoId());
+		List<Long> referenceIdList = new ArrayList<>();
+		referenceIdList.add(mainTodo.getTodoId());
+		CreateTodoRequestBody subTodoRequest = getCreateTodoRequest(subTodoContent, referenceIdList);
 		Todo subTodo = todoService.create(subTodoRequest).getTodo();
 
 		assertThat(subTodo, is(notNullValue()));
@@ -86,10 +91,10 @@ public class TodoServiceTest {
 	}
 
 
-	private CreateTodoRequestBody getCreateTodoRequest(String content, Long referenceId) {
+	private CreateTodoRequestBody getCreateTodoRequest(String content, List<Long> referenceIdList) {
 		CreateTodoRequestBody request = CreateTodoRequestBody.builder()
 				.content(content)
-				.referenceId(referenceId)
+				.referenceIdList(referenceIdList)
 				.build();
 		return request;
 	}

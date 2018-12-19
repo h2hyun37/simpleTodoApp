@@ -2,13 +2,17 @@ package com.h2hyun37.todoApp.dto;
 
 import com.h2hyun37.todoApp.common.ApiBody;
 import com.h2hyun37.todoApp.entity.Todo;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class FindTodoListResponse implements ApiBody {
 	private List<Todo> todoList;
 	private int pageNumber; // 현재 페이지 번호

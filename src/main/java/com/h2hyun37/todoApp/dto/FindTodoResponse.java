@@ -5,8 +5,6 @@ import com.h2hyun37.todoApp.entity.Todo;
 import lombok.Builder;
 import lombok.Data;
 
-import java.util.List;
-
 @Data
 @Builder
 public class FindTodoResponse implements ApiBody {

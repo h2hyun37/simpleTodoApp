@@ -7,7 +7,7 @@ public class ApiResponseFactory {
 		ApiHeader header = new ApiHeader();
 		header.setCode(apiResultCode);
 
-		ApiResponse<T> apiResponse = new ApiResponse<T>();
+		ApiResponse<T> apiResponse = new ApiResponse<>();
 		apiResponse.setHeader(header);
 		apiResponse.setData(data);
 		return apiResponse;

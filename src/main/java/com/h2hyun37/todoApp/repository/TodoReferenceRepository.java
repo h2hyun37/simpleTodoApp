@@ -1,6 +1,5 @@
 package com.h2hyun37.todoApp.repository;
 
-import com.h2hyun37.todoApp.entity.Todo;
 import com.h2hyun37.todoApp.entity.TodoReference;
 import org.springframework.data.jpa.repository.JpaRepository;
 

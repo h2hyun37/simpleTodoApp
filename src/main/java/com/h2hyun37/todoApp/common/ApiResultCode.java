@@ -7,7 +7,8 @@ import lombok.Setter;
 public enum ApiResultCode {
 	SUCCESS(0),
 	ERROR(1),
-	NOT_FOUND(2);
+	NOT_FOUND(2),
+	UNCOMPLETED_TODO_EXISTS(3);
 
 
 	private int code;

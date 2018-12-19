@@ -8,12 +8,18 @@ import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+import org.springframework.web.servlet.resource.PathResourceResolver;
 
 import java.util.List;
 
 @Configuration
 public class WebMvcConfiguration extends WebMvcConfigurationSupport {
+	private static final String[] RESOURCE_LOCATIONS = {
+			"classpath:/static/"
+	};
+
 	@Autowired
 	private ObjectMapper objectMapper;
 
@@ -30,6 +36,17 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
 
 		argumentResolvers.add(getPageableResolver());
 	}
+
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry
+				.addResourceHandler("/static/**")
+				.addResourceLocations(RESOURCE_LOCATIONS)
+				.setCachePeriod(3600)
+				.resourceChain(true)
+				.addResolver(new PathResourceResolver());
+	}
+
 
 	private PageableHandlerMethodArgumentResolver getPageableResolver() {
 		PageableHandlerMethodArgumentResolver resolver = new PageableHandlerMethodArgumentResolver();
