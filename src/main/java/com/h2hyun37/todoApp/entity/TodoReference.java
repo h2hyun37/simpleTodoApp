@@ -9,6 +9,10 @@ import java.time.ZonedDateTime;
 
 @Entity
 @SequenceGenerator(name = "todoReferenceSeqGenerator", sequenceName = "TODO_REF_SEQ", initialValue = 1, allocationSize = 1)
+@Table(indexes = {
+				@Index(name = "IDX_TODOID1", columnList = "todoId"),
+				@Index(name = "IDX_REFERENCEID1", columnList = "referenceId")
+		})
 @Getter
 @ToString
 public class TodoReference {
