@@ -13,8 +13,8 @@
 
 ## 설치 및 실행
 * java,maven,git 사용이 가능해야 합니다
-#### 1. 이 git repository를 fork한후 로컬pc에 clone하여 다운로드 받습니다.
-```git clone https://github.com/{your-account}/simpleTodoApp```
+#### 1. 이 git repository를 로컬pc에 clone하여 다운로드 받습니다.
+```git clone https://github.com/h2hyun37/simpleTodoApp```
 
 #### 2. 다음 maven 명령어를 실행하여 빌드합니다.
 ```mvn clean package -DskipTests```
