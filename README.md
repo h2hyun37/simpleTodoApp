@@ -30,6 +30,9 @@ mvn clean test -Dtest=TodoRepositoryTest
 #### 4. 브라우저를 이용하여 todoApp 페이지를 오픈합니다.
 ```http://localhost:8080/view/list```
 
+#### 5. DB 확인이 필요하다면 DB 콘솔 페이지를 이용합니다.
+```http://localhost:8080/h2-console```
+
 ## 기타
 #### 문제해결전략
 ##### 요구사항 분석
