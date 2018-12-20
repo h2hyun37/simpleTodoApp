@@ -1,8 +1,11 @@
 package com.h2hyun37.todoApp.service;
 
 import com.h2hyun37.todoApp.TodoAppApplication;
+import com.h2hyun37.todoApp.constants.Status;
 import com.h2hyun37.todoApp.dto.CreateTodoRequestBody;
+import com.h2hyun37.todoApp.dto.UpdateStatusRequestBody;
 import com.h2hyun37.todoApp.dto.UpdateTodoRequestBody;
+import com.h2hyun37.todoApp.dto.UpdateTodoResponse;
 import com.h2hyun37.todoApp.entity.Todo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -20,7 +23,6 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.ArgumentMatchers.isNotNull;
 
 @Slf4j
 @SpringBootTest
@@ -88,6 +90,21 @@ public class TodoServiceTest {
 		assertThat(updatedTodo, is(notNullValue()));
 		assertTrue(StringUtils.equals(updateContent, updatedTodo.getContent()));
 
+	}
+
+	@Test
+	public void test_update_status_with_no_reference_todo() {
+		String content = "test content";
+		CreateTodoRequestBody request = getCreateTodoRequest(content, null);
+		Todo createdTodo = todoService.create(request).getTodo();
+
+		UpdateStatusRequestBody updateStatusRequestBody = UpdateStatusRequestBody.builder()
+				.status(Status.COMPLETE)
+				.todoId(createdTodo.getTodoId())
+				.build();
+		UpdateTodoResponse response = todoService.updateStatus(updateStatusRequestBody);
+
+		assertThat(response.getTodo().getStatus(),is(Status.COMPLETE));
 	}
 
 
