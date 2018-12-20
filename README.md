@@ -27,6 +27,9 @@ mvn clean test -Dtest=TodoRepositoryTest
 #### 3. 정상적으로 빌드가 완료되면, 다음 java 명령어를 실행하여 구동합니다.
 ```java -jar target/todoApp-0.0.1-SNAPSHOT.jar```
 
+#### 4. 브라우저를 이용하여 todoApp 페이지를 오픈합니다.
+```http://localhost:8080/view/list```
+
 ## 기타
 #### 문제해결전략
 ##### 요구사항 분석
